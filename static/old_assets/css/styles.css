@@ -11701,6 +11701,10 @@ body {
 }
 
 
+.full-caps {
+  text-transform: uppercase;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

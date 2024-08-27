@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'farmer.CustomUser'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
-
+LOGIN_URL = '/login/'
 
 
 MIDDLEWARE = [
@@ -144,3 +144,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+

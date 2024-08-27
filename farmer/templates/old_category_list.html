@@ -1,0 +1,276 @@
+
+{% load static %}
+
+{% include 'farmer/includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'farmer/includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'farmer/includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            
+
+
+
+
+            <h2>Categories</h2>
+            <a href="{% url 'category_create' %}">Create New Category</a>
+            <ul>
+              {% for category in categories %}
+                <li>
+                  {{ category.name }}
+                  <a href="{% url 'category_edit' category.id %}">Edit</a>
+                  <a href="{% url 'category_delete' category.id %}">Delete</a>
+                </li>
+              {% endfor %}
+            </ul>
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div  id="Profile_Product" role="tabpanel" aria-labelledby="Profile_Product_tab">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <form>
+                                        <div class="input-group">                               
+                                            <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Search">
+                                            <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>                                                
+                                    </form>                                            
+                                </div><!--end col-->
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary"><i class="fas fa-filter"></i></button>
+                                    <button type="button" class="btn btn-primary"><a href="/farmer/product_create/">Add Product</a></button>                                                                                        
+                                </div><!--end col-->                                        
+                            </div><!--end row-->
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="/static/assets/icons/brinjal.png" alt="" class="rounded-circle d-block mx-auto mt-2" height="100">
+                                                <h2 class="m-0 fw-semibold text-dark font-16 mt-3">Brinjal</h2>   
+                                                
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Qty : </span>10000 Kg</p> 
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Price : </span>Rs. 30 per Kg</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-14 m-0 fw-bold">Projected Quantity: 20000 Kg</h5> 
+                                                    <p class="mb-0 text-muted">Projected Timeline : 100 days</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+                         
+
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="/static/assets/icons/brinjal.png" alt="" class="rounded-circle d-block mx-auto mt-2" height="100">
+                                                <h2 class="m-0 fw-semibold text-dark font-16 mt-3">Brinjal</h2>   
+                                                
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Qty : </span>10000 Kg</p> 
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Price : </span>Rs. 30 per Kg</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-14 m-0 fw-bold">Projected Quantity: 20000 Kg</h5> 
+                                                    <p class="mb-0 text-muted">Projected Timeline : 100 days</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+
+
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="/static/assets/icons/brinjal.png" alt="" class="rounded-circle d-block mx-auto mt-2" height="100">
+                                                <h2 class="m-0 fw-semibold text-dark font-16 mt-3">Brinjal</h2>   
+                                                
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Qty : </span>10000 Kg</p> 
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Price : </span>Rs. 30 per Kg</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-14 m-0 fw-bold">Projected Quantity: 20000 Kg</h5> 
+                                                    <p class="mb-0 text-muted">Projected Timeline : 100 days</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="/static/assets/icons/brinjal.png" alt="" class="rounded-circle d-block mx-auto mt-2" height="100">
+                                                <h2 class="m-0 fw-semibold text-dark font-16 mt-3">Brinjal</h2>   
+                                                
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Qty : </span>10000 Kg</p> 
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Price : </span>Rs. 30 per Kg</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-14 m-0 fw-bold">Projected Quantity: 20000 Kg</h5> 
+                                                    <p class="mb-0 text-muted">Projected Timeline : 100 days</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+
+                                  
+                            </div><!--end row--> 
+
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="/static/assets/icons/brinjal.png" alt="" class="rounded-circle d-block mx-auto mt-2" height="100">
+                                                <h2 class="m-0 fw-semibold text-dark font-16 mt-3">Brinjal</h2>   
+                                                
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Qty : </span>10000 Kg</p> 
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Price : </span>Rs. 30 per Kg</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-14 m-0 fw-bold">Projected Quantity: 20000 Kg</h5> 
+                                                    <p class="mb-0 text-muted">Projected Timeline : 100 days</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+                         
+
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="/static/assets/icons/brinjal.png" alt="" class="rounded-circle d-block mx-auto mt-2" height="100">
+                                                <h2 class="m-0 fw-semibold text-dark font-16 mt-3">Brinjal</h2>   
+                                                
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Qty : </span>10000 Kg</p> 
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Price : </span>Rs. 30 per Kg</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-14 m-0 fw-bold">Projected Quantity: 20000 Kg</h5> 
+                                                    <p class="mb-0 text-muted">Projected Timeline : 100 days</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+
+
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="/static/assets/icons/brinjal.png" alt="" class="rounded-circle d-block mx-auto mt-2" height="100">
+                                                <h2 class="m-0 fw-semibold text-dark font-16 mt-3">Brinjal</h2>   
+                                                
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Qty : </span>10000 Kg</p> 
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Price : </span>Rs. 30 per Kg</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-14 m-0 fw-bold">Projected Quantity: 20000 Kg</h5> 
+                                                    <p class="mb-0 text-muted">Projected Timeline : 100 days</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="/static/assets/icons/brinjal.png" alt="" class="rounded-circle d-block mx-auto mt-2" height="100">
+                                                <h2 class="m-0 fw-semibold text-dark font-16 mt-3">Brinjal</h2>   
+                                                
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Qty : </span>10000 Kg</p> 
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Actual Price : </span>Rs. 30 per Kg</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-14 m-0 fw-bold">Projected Quantity: 20000 Kg</h5> 
+                                                    <p class="mb-0 text-muted">Projected Timeline : 100 days</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+
+                                  
+                            </div><!--end row--> 
+
+                          <!--end row-->                                   
+                        </div><!--end tab-pane-->
+                       <!--end tab-pane-->
+
+                    
+
+                   <!-- end row -->
+
+       
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'farmer/includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>

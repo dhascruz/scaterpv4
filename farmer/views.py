@@ -1,12 +1,13 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .forms import CustomUserCreationForm, FarmerDetailForm
+from .forms import *
 from .models import *
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 import logging
 logger = logging.getLogger(__name__)
+
 
 
 def register(request):
@@ -72,10 +73,12 @@ def farmer_dashboard(request):
     user_id = request.user.id
     request.session['user_id'] = user_id
     logger.info(user_id)
-    return render(request, 'farmer/index.html',  {'user_id': user_id})
+    agri_products=get_all_products_with_category_images()
+    return render(request, 'farmer/index.html',  {'user_id': user_id, 'agri_products':agri_products})
 
 
-
+@login_required
+@user_passes_test(farmer_check)
 def personal_information(request, user_id):
     #user = get_object_or_404(CustomUser, id=user_id)
     
@@ -164,3 +167,404 @@ def my_contacts(request):
     #return render(request, 'profile.html', {'profile': profile})
     return render(request, 'farmer/my_contacts.html')
 
+
+
+
+
+# def product_list(request):
+#     products = AgriculturalProduct.objects.filter(user=request.user)
+#     return render(request, 'farmer/products.html', {'products': products})
+
+# def product_create(request):
+#     if request.method == 'POST':
+#         form = AgriculturalProductForm(request.POST)
+#         if form.is_valid():
+#             product = form.save(commit=False)
+#             product.user = request.user
+#             product.save()
+#             return redirect('product_list')
+#     else:
+#         form = AgriculturalProductForm()
+#     return render(request, 'farmer/products_form.html', {'form': form})
+
+# def product_update(request, pk):
+#     product = get_object_or_404(AgriculturalProduct, pk=pk, user=request.user)
+#     if request.method == 'POST':
+#         form = AgriculturalProductForm(request.POST, instance=product)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('product_list')
+#     else:
+#         form = AgriculturalProductForm(instance=product)
+#     return render(request, 'farmer/products_form.html', {'form': form})
+
+# def product_delete(request, pk):
+#     product = get_object_or_404(AgriculturalProduct, pk=pk, user=request.user)
+#     if request.method == 'POST':
+#         product.delete()
+#         return redirect('product_list')
+#     return render(request, 'farmer/products_confirm_delete.html', {'product': product})
+
+
+@login_required
+@user_passes_test(farmer_check)
+def add_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('add_agri_product')
+    else:
+        form = CategoryForm()
+
+    return render(request, 'category_form.html', {'form': form})
+
+@login_required
+@user_passes_test(farmer_check)
+def add_agri_product(request):
+    if request.method == 'POST':
+        form = AgriProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            
+            try:
+                agri_product = form.save(commit=False)
+                agri_product.user = request.user
+                agri_product.save()
+                #form.save( )
+                return redirect('agri_product_list')
+            except Exception as e:
+                # Handle any errors that occur during saving
+                return render(request, 'farmer/agri_product_form.html', {
+                    'form': form,
+                    'error_message': f'An error occurred: {str(e)}'
+                })
+            
+    else:
+        form = AgriProductForm()
+
+    return render(request, 'farmer/agri_product_form.html', {'form': form})
+
+
+
+def agri_product_update(request, pk):
+    product = get_object_or_404(AgriProduct, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = AgriProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('agri_product_list')
+    else:
+        form = AgriProductForm(instance=product)
+    return render(request, 'farmer/agri_product_form.html', {'form': form})
+
+
+def agri_product_delete(request, pk):
+    product = get_object_or_404(AgriProduct, pk=pk, user=request.user)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('agri_product_list')
+    return render(request, 'farmer/agri_product_delete.html', {'product': product})
+
+
+
+
+@login_required
+@user_passes_test(farmer_check)
+def agri_product_list(request):
+    #agri_products = AgriProduct.objects.filter(user=request.user)
+    agri_products=get_all_products_with_category_images()
+    #cat_image= get_category_image_url(3)
+    return render(request, 'farmer/agri_product_list.html', {'agri_products': agri_products})
+
+
+
+def get_all_products_with_category_images():
+    # Query all products and annotate with the category image URL
+    products = AgriProduct.objects.all().select_related('category').annotate(
+        category_image_url=F('image')
+    )
+
+    # Create a list to store products with their corresponding category image URLs
+    product_list = [
+        {
+            'id': product.id,
+            'crop_name': product.crop_name,
+            'actual_production': product.actual_production,
+            'project_production': product.project_production,
+            'cost_per_unit': product.cost_per_unit,
+            'project_cost_per_unit': product.project_cost_per_unit,
+            'category_image_url': get_category_image_url(product.category_id)
+        }
+        for product in products
+    ]
+
+    return product_list
+
+
+
+
+
+
+def get_category_image_url(category_id):
+    # Retrieve the category object based on the given ID
+    category = get_object_or_404(Category, id=category_id)
+    
+    # Check if the category has an image
+    if category.image:
+        return category.image.url  # Return the URL of the image
+    else:
+        return None  # or a default image URL if preferred
+
+
+
+###category admin start
+@login_required
+
+def category_list(request):
+    categories = Category.objects.all()
+    return render(request, 'category_list.html', {'categories': categories})
+
+@login_required
+
+def category_create(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('category_list')
+    else:
+        form = CategoryForm()
+    return render(request, 'category_form.html', {'form': form})
+
+@login_required
+
+def category_edit(request, id):
+    category = get_object_or_404(Category, id=id)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('category_list')
+    else:
+        form = CategoryForm(instance=category)
+    return render(request, 'category_form.html', {'form': form})
+
+@login_required
+
+def category_delete(request, id):
+    category = get_object_or_404(Category, id=id)
+    if request.method == 'POST':
+        category.delete()
+        return redirect('category_list')
+    return render(request, 'category_confirm_delete.html', {'category': category})
+
+
+###category admin end
+
+
+
+
+
+###category admin start
+@login_required
+@user_passes_test(farmer_check)
+def farmer_list(request):
+    farmers = FarmerDetail.objects.all()
+    return render(request, 'farmer_list.html', {'farmers': farmers})
+
+@login_required
+@user_passes_test(farmer_check)
+def Farmer_create(request):
+    if request.method == 'POST':
+        form = FarmerDetail(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('Farmer_list')
+    else:
+        form = FarmerDetailForm()
+    return render(request, 'farmer/Farmer_form.html', {'form': form})
+
+# def Farmer_edit(request, id):
+#     Farmer = get_object_or_404(Farmer, id=id)
+#     if request.method == 'POST':
+#         form = FarmerForm(request.POST, request.FILES, instance=Farmer)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('Farmer_list')
+#     else:
+#         form = FarmerForm(instance=Farmer)
+#     return render(request, 'products/Farmer_form.html', {'form': form})
+
+# def Farmer_delete(request, id):
+#     Farmer = get_object_or_404(Farmer, id=id)
+#     if request.method == 'POST':
+#         Farmer.delete()
+#         return redirect('Farmer_list')
+#     return render(request, 'products/Farmer_confirm_delete.html', {'Farmer': Farmer})
+
+
+###category admin end
+
+
+
+
+
+###farmer profile list start
+
+def farmer_profile_list(request):
+    #farmers = FarmerDetail.objects.all()
+    #return render(request, 'farmer_profile_list.html', {'farmers': farmers})
+    return render(request, 'farmer_profile_list.html')
+
+# def Farmer_create(request):
+#     if request.method == 'POST':
+#         form = FarmerForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('Farmer_list')
+#     else:
+#         form = FarmerForm()
+#     return render(request, 'products/Farmer_form.html', {'form': form})
+
+# def Farmer_edit(request, id):
+#     Farmer = get_object_or_404(Farmer, id=id)
+#     if request.method == 'POST':
+#         form = FarmerForm(request.POST, request.FILES, instance=Farmer)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('Farmer_list')
+#     else:
+#         form = FarmerForm(instance=Farmer)
+#     return render(request, 'products/Farmer_form.html', {'form': form})
+
+# def Farmer_delete(request, id):
+#     Farmer = get_object_or_404(Farmer, id=id)
+#     if request.method == 'POST':
+#         Farmer.delete()
+#         return redirect('Farmer_list')
+#     return render(request, 'products/Farmer_confirm_delete.html', {'Farmer': Farmer})
+
+
+###farmer profile list end
+
+
+###farmer contact list start
+
+def farmer_contact_list(request):
+    #farmers = FarmerDetail.objects.all()
+    #return render(request, 'farmer_profile_list.html', {'farmers': farmers})
+    return render(request, 'farmer/farmer_contact22_list.html')
+
+# def Farmer_create(request):
+#     if request.method == 'POST':
+#         form = FarmerForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('Farmer_list')
+#     else:
+#         form = FarmerForm()
+#     return render(request, 'products/Farmer_form.html', {'form': form})
+
+# def Farmer_edit(request, id):
+#     Farmer = get_object_or_404(Farmer, id=id)
+#     if request.method == 'POST':
+#         form = FarmerForm(request.POST, request.FILES, instance=Farmer)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('Farmer_list')
+#     else:
+#         form = FarmerForm(instance=Farmer)
+#     return render(request, 'products/Farmer_form.html', {'form': form})
+
+# def Farmer_delete(request, id):
+#     Farmer = get_object_or_404(Farmer, id=id)
+#     if request.method == 'POST':
+#         Farmer.delete()
+#         return redirect('Farmer_list')
+#     return render(request, 'products/Farmer_confirm_delete.html', {'Farmer': Farmer})
+
+
+###farmer contat list end
+
+
+
+
+### agri asset start
+@login_required
+@user_passes_test(farmer_check)
+def asset_list(request):
+    assets = AgriAsset.objects.all()
+    return render(request, 'farmer/asset_list.html', {'assets': assets})
+
+@login_required
+@user_passes_test(farmer_check)
+def asset_create(request):
+    if request.method == 'POST':
+        form = AgriAssetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('asset_list')
+    else:
+        form = AgriAssetForm()
+    return render(request, 'farmer/asset_form.html', {'form': form})
+
+@login_required
+@user_passes_test(farmer_check)
+def asset_edit(request, id):
+    asset = get_object_or_404(AgriAsset, id=id)
+    if request.method == 'POST':
+        form = AgriAssetForm(request.POST, instance=asset)
+        if form.is_valid():
+            form.save()
+            return redirect('asset_list')
+    else:
+        form = AgriAssetForm(instance=asset)
+    return render(request, 'farmer/asset_form.html', {'form': form})
+
+@login_required
+@user_passes_test(farmer_check)
+def asset_delete(request, id):
+    asset = get_object_or_404(AgriAsset, id=id)
+    if request.method == 'POST':
+        asset.delete()
+        return redirect('asset_list')
+    return render(request, 'farmer/asset_confirm_delete.html', {'asset': asset})
+
+
+
+# List view to show all land assets
+
+
+
+### agri asset end
+def farmer_contact_list(request):
+    contacts = Contact.objects.all()
+    return render(request, 'farmer/contact_list.html', {'contacts': contacts})
+
+def farmer_add_contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contact_list')
+    else:
+        form = ContactForm()
+    return render(request, 'farmer/contact_form.html', {'form': form})
+
+def farmer_edit_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if request.method == 'POST':
+        form = ContactForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            return redirect('contact_list')
+    else:
+        form = ContactForm(instance=contact)
+    return render(request, 'farmer/contact_form.html', {'form': form})
+
+def farmer_delete_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if request.method == 'POST':
+        contact.delete()
+        return redirect('contact_list')
+    return render(request, 'farmer/contact_confirm_delete.html', {'contact': contact})

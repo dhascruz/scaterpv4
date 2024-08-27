@@ -1,0 +1,54 @@
+
+{% load static %}
+
+{% include 'farmer/includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'farmer/includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'farmer/includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            
+
+
+
+
+            {% block content %}
+              <h1>Confirm Delete</h1>
+              <p>Are you sure you want to delete "{{ asset.land_owner }}"?</p>
+              <form method="post">
+                {% csrf_token %}
+                <button type="submit">Yes, delete</button>
+                <a href="{% url 'asset_list' %}">Cancel</a>
+              </form>
+            {% endblock %}
+            
+
+
+                
+                   <!-- end row -->
+
+       
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'farmer/includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>

@@ -1,0 +1,111 @@
+
+{% load static %}
+
+{% include 'farmer/includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'farmer/includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'farmer/includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            <div  id="Profile_Projection" role="tabpanel" aria-labelledby="portfolio_detail_tab">
+                <li class="creat-btn">
+                    <div class="nav-link">
+                        <a class=" btn btn-sm btn-soft-primary" href="/farmer/assets/new" role="button"><i class="fas fa-plus me-2"></i>Add your Asset</a>
+                    </div>                                
+                </li>
+                
+
+ 
+                <div class="row">
+                    <div class="col-12">
+                        
+          
+
+                {% block content %}
+                  <h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Agricultural Asset</h2>
+                
+                  <form method="post" class="col-12">
+                    {% csrf_token %}
+                    <table class="col-12">
+                      <tr>
+                        <td style="width:20%;">{{ form.land_owner.label_tag }}</td>
+                        <td >{{ form.land_owner }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ form.land_location.label_tag }}</td>
+                        <td>{{ form.land_location }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ form.google_map_location.label_tag }}</td>
+                        <td>{{ form.google_map_location }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ form.width.label_tag }}</td>
+                        <td>{{ form.width }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ form.length.label_tag }}</td>
+                        <td>{{ form.length }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ form.size.label_tag }}</td>
+                        <td>{{ form.size }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ form.cultivation_method.label_tag }}</td>
+                        <td>{{ form.cultivation_method }}</td>
+                      </tr>
+
+                      <tr>
+                        <td>{{ form.owner_type.label_tag }}</td>
+                        <td>{{ form.owner_type}}</td>
+                      </tr>
+                    </table>
+                    
+                    <button type="submit" class="btn btn-primary">
+                      {% if form.instance.pk %}Save Changes{% else %}Create Asset{% endif %}
+                    </button>
+                    <a href="{% url 'asset_list' %}" class="btn btn-secondary">Cancel</a>
+                  </form>
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                
+            </div>
+            
+            
+            <!--end tab-pane-->
+
+                    
+
+                   <!-- end row -->
+
+       
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'farmer/includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>
