@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'scatv4.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'scatv4',
+        'NAME': 'scaterp',
         'USER': 'myadmin',
         'PASSWORD': '453cur135',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
