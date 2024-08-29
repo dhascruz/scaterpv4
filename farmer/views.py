@@ -56,7 +56,8 @@ def dashboard(request):
 @login_required
 @user_passes_test(admin_check)
 def admin_dashboard(request):
-    return render(request, 'index.html')
+    customusers = CustomUser.objects.all();
+    return render(request, 'index.html', {'customusers': customusers})
 
 @login_required
 @user_passes_test(admin_check)
@@ -142,10 +143,47 @@ def farmer_success(request):
 def products(request):
     id=1
     #profile = Farmer.objects.get(id=1)
+    user_id = request.user.id
     
 
     #return render(request, 'profile.html', {'profile': profile})
-    return render(request, 'farmer/products.html')
+    return render(request, 'farmer/products.html',  {'user_id': user_id})
+
+
+def farmer_asset_list(request):
+    #farmers = FarmerDetail.objects.all()
+    #return render(request, 'farmer_profile_list.html', {'farmers': farmers})
+        assets = AgriAsset.objects.all()
+        user_id = request.user.id
+        return render(request, 'asset_list.html', {'assets': assets,'user_id': user_id })
+
+
+
+def farmer_product_list(request):
+        #agri_products = AgriProduct.objects.filter(user=request.user)
+    agri_products=get_all_products_with_category_images()
+    #cat_image= get_category_image_url(3)
+    user_id = request.user.id
+
+
+    return render(request, 'agri_product_list.html', {'agri_products': agri_products,'user_id': user_id})
+
+    #    return render(request, 'asset_list.html', {'assets': assets,'user_id': user_id })    
+
+
+
+
+def farmer_contact_list(request):
+    user_id = request.user.id
+
+    contacts = Contact.objects.all()
+    return render(request, 'contact_list.html', {'contacts': contacts,'user_id': user_id})
+
+
+    #return render(request, 'agri_product_list.html', {'agri_products': agri_products,'user_id': user_id})
+
+    #    return render(request, 'asset_list.html', {'assets': assets,'user_id': user_id })    
+
 
 
 @login_required
@@ -222,6 +260,7 @@ def add_category(request):
 @login_required
 @user_passes_test(farmer_check)
 def add_agri_product(request):
+    user_id = request.user.id
     if request.method == 'POST':
         form = AgriProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -242,11 +281,12 @@ def add_agri_product(request):
     else:
         form = AgriProductForm()
 
-    return render(request, 'farmer/agri_product_form.html', {'form': form})
+    return render(request, 'farmer/agri_product_form.html', {'form': form,'user_id': user_id})
 
 
 
 def agri_product_update(request, pk):
+    user_id = request.user.id
     product = get_object_or_404(AgriProduct, pk=pk, user=request.user)
     if request.method == 'POST':
         form = AgriProductForm(request.POST, instance=product)
@@ -255,15 +295,16 @@ def agri_product_update(request, pk):
             return redirect('agri_product_list')
     else:
         form = AgriProductForm(instance=product)
-    return render(request, 'farmer/agri_product_form.html', {'form': form})
+    return render(request, 'farmer/agri_product_form.html', {'form': form,'user_id': user_id})
 
 
 def agri_product_delete(request, pk):
+    user_id = request.user.id
     product = get_object_or_404(AgriProduct, pk=pk, user=request.user)
     if request.method == 'POST':
         product.delete()
         return redirect('agri_product_list')
-    return render(request, 'farmer/agri_product_delete.html', {'product': product})
+    return render(request, 'farmer/agri_product_delete.html', {'product': product,'user_id': user_id})
 
 
 
@@ -274,7 +315,10 @@ def agri_product_list(request):
     #agri_products = AgriProduct.objects.filter(user=request.user)
     agri_products=get_all_products_with_category_images()
     #cat_image= get_category_image_url(3)
-    return render(request, 'farmer/agri_product_list.html', {'agri_products': agri_products})
+    user_id = request.user.id
+
+
+    return render(request, 'farmer/agri_product_list.html', {'agri_products': agri_products,'user_id': user_id})
 
 
 
@@ -367,10 +411,11 @@ def category_delete(request, id):
 
 ###category admin start
 @login_required
-@user_passes_test(farmer_check)
+
 def farmer_list(request):
-    farmers = FarmerDetail.objects.all()
-    return render(request, 'farmer_list.html', {'farmers': farmers})
+    
+    farmer_users = CustomUser.objects.filter(role='farmer')
+    return render(request, 'farmer_list.html', {'farmer_users': farmer_users})
 
 @login_required
 @user_passes_test(farmer_check)
@@ -486,6 +531,55 @@ def farmer_contact_list(request):
 
 ###farmer contat list end
 
+login_required
+def user_list(request):
+    user_id = request.user.id
+
+    customusers = CustomUser.objects.all();
+    return render(request, 'user_list.html', {'customusers': customusers,'user_id': user_id})
+
+    #return render(request, 'user_form.html', {'form': form,'user_id': user_id })
+
+
+login_required
+def user_create(request):
+    user_id = request.user.id
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('user_list')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'user_form.html', {'form': form,'user_id': user_id })
+
+@login_required
+
+def user_edit(request, id):
+    user_id = request.user.id
+    user = get_object_or_404(CustomUser, id=id)
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user_list')
+    else:
+        form = CustomUserCreationForm(instance=user)
+    return render(request, 'user_form.html', {'form': form,'user_id': user_id })
+
+@login_required
+
+def user_delete(request, id):
+    user_id = request.user.id
+    user = get_object_or_404(CustomUser, id=id)
+    if request.method == 'POST':
+        user.delete()
+        return redirect('user_list')
+    return render(request, 'user_confirm_delete.html', {'user': user,'user_id': user_id })
+
+
+
 
 
 
@@ -494,11 +588,14 @@ def farmer_contact_list(request):
 @user_passes_test(farmer_check)
 def asset_list(request):
     assets = AgriAsset.objects.all()
-    return render(request, 'farmer/asset_list.html', {'assets': assets})
+    user_id = request.user.id
+    return render(request, 'farmer/asset_list.html', {'assets': assets,'user_id': user_id })
 
 @login_required
 @user_passes_test(farmer_check)
 def asset_create(request):
+    user_id = request.user.id
+
     if request.method == 'POST':
         form = AgriAssetForm(request.POST)
         if form.is_valid():
@@ -506,11 +603,12 @@ def asset_create(request):
             return redirect('asset_list')
     else:
         form = AgriAssetForm()
-    return render(request, 'farmer/asset_form.html', {'form': form})
+    return render(request, 'farmer/asset_form.html', {'form': form,'user_id': user_id })
 
 @login_required
 @user_passes_test(farmer_check)
 def asset_edit(request, id):
+    user_id = request.user.id
     asset = get_object_or_404(AgriAsset, id=id)
     if request.method == 'POST':
         form = AgriAssetForm(request.POST, instance=asset)
@@ -519,16 +617,17 @@ def asset_edit(request, id):
             return redirect('asset_list')
     else:
         form = AgriAssetForm(instance=asset)
-    return render(request, 'farmer/asset_form.html', {'form': form})
+    return render(request, 'farmer/asset_form.html', {'form': form,'user_id': user_id })
 
 @login_required
 @user_passes_test(farmer_check)
 def asset_delete(request, id):
+    user_id = request.user.id
     asset = get_object_or_404(AgriAsset, id=id)
     if request.method == 'POST':
         asset.delete()
         return redirect('asset_list')
-    return render(request, 'farmer/asset_confirm_delete.html', {'asset': asset})
+    return render(request, 'farmer/asset_confirm_delete.html', {'asset': asset,'user_id': user_id })
 
 
 
@@ -538,10 +637,14 @@ def asset_delete(request, id):
 
 ### agri asset end
 def farmer_contact_list(request):
+    user_id = request.user.id
+
     contacts = Contact.objects.all()
-    return render(request, 'farmer/contact_list.html', {'contacts': contacts})
+    return render(request, 'farmer/contact_list.html', {'contacts': contacts,'user_id': user_id})
 
 def farmer_add_contact(request):
+    user_id = request.user.id
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -549,9 +652,11 @@ def farmer_add_contact(request):
             return redirect('contact_list')
     else:
         form = ContactForm()
-    return render(request, 'farmer/contact_form.html', {'form': form})
+    return render(request, 'farmer/contact_form.html', {'form': form,'user_id': user_id})
 
 def farmer_edit_contact(request, pk):
+    user_id = request.user.id
+
     contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'POST':
         form = ContactForm(request.POST, instance=contact)
@@ -560,11 +665,13 @@ def farmer_edit_contact(request, pk):
             return redirect('contact_list')
     else:
         form = ContactForm(instance=contact)
-    return render(request, 'farmer/contact_form.html', {'form': form})
+    return render(request, 'farmer/contact_form.html', {'form': form,'user_id': user_id})
 
 def farmer_delete_contact(request, pk):
+    user_id = request.user.id
+
     contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'POST':
         contact.delete()
         return redirect('contact_list')
-    return render(request, 'farmer/contact_confirm_delete.html', {'contact': contact})
+    return render(request, 'farmer/contact_confirm_delete.html', {'contact': contact,'user_id': user_id})

@@ -24,6 +24,11 @@ urlpatterns = [
     ###urls admin to add categories
 
 
+    path('users_list', views.user_list, name='user_list'),
+    path('users/new/', views.user_create, name='user_create'),
+    path('users/edit/<int:id>/', views.user_edit, name='user_edit'),
+    path('users/delete/<int:id>/', views.user_delete, name='user_delete'),
+
 
     ###urls admin to add farmers
    path('farmer_list/', views.farmer_list, name='farmer_list'),
@@ -34,7 +39,14 @@ urlpatterns = [
 
 
 ###urls admin to add farmer profiles
-   path('farmer_profile_list/', views.farmer_profile_list, name='farmer_profile_list'),
+    path('farmer_asset_list/', views.farmer_asset_list, name='farmer_asset_list'),
+    # path('categories/new/', views.category_create, name='category_create'),
+    # path('categories/edit/<int:id>/', views.category_edit, name='category_edit'),
+    # path('categories/delete/<int:id>/', views.category_delete, name='category_delete'),
+    # ###urls admin to add farmer profiles
+
+###urls admin to add farmer profiles
+    path('farmer_product_list/', views.farmer_product_list, name='farmer_product_list'),
     # path('categories/new/', views.category_create, name='category_create'),
     # path('categories/edit/<int:id>/', views.category_edit, name='category_edit'),
     # path('categories/delete/<int:id>/', views.category_delete, name='category_delete'),
@@ -56,7 +68,6 @@ urlpatterns = [
     #path('farmer/personal_information', views.personal_information, name='personal_information'),
     #path('farmer/products', views.products, name='products'),
     path('farmer/projection', views.projection, name='projection'),
-    path('farmer/my_contacts', views.my_contacts, name='my_contacts'),
 
 
  #path('farmer/product_list', views.product_list, name='product_list'),
@@ -84,7 +95,7 @@ urlpatterns = [
     path('farmer/assets/edit/<int:id>/', views.asset_edit, name='asset_edit'),
     path('farmer/assets/delete/<int:id>/', views.asset_delete, name='asset_delete'),
 
-     path('farmer/contacts/', views.farmer_contact_list, name='contact_list'),
+     path('farmer/contact_list/', views.farmer_contact_list, name='contact_list'),
     path('farmer/contacts/add/', views.farmer_add_contact, name='add_contact'),
     path('farmer/contacts/<int:pk>/edit/', views.farmer_edit_contact, name='edit_contact'),
     path('farmer/contacts/<int:pk>/delete/', views.farmer_delete_contact, name='delete_contact'),

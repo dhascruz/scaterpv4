@@ -57,7 +57,10 @@
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <input type="submit" name="Save Product">
+                    <input type="submit" class="btn btn-primary" name="Save Product" value="Save Product">
+                    {% comment %} <button type="submit" class="btn btn-soft-primary btn-sm">Create project</button> {% endcomment %}
+
+                   
                 </form>
 
             

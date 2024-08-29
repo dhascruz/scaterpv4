@@ -6,6 +6,7 @@ class CustomUser(AbstractUser):
     ROLE_CHOICES = (
         ('admin', 'Admin'),
         ('farmer', 'Farmer'),
+        ('outlet', 'outlet'),
     )
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
 

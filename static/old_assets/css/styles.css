@@ -11705,6 +11705,10 @@ body {
   text-transform: uppercase;
 }
 
+select#id_user {
+  width: 100%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

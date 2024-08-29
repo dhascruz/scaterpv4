@@ -92,6 +92,46 @@ class CustomLoginForm(UserCreationForm):
 
 class AgriProductForm(forms.ModelForm):
 
+
+    crop_name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+
+    actual_production = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    project_production = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    
+    projection_timeline = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    
+    cultivation_land_value = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    
+     
+    cost_per_unit = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    project_cost_per_unit = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+
+
     
     class Meta:
         model = AgriProduct
@@ -121,13 +161,68 @@ class CategoryForm(forms.ModelForm):
 
 class AgriAssetForm(forms.ModelForm):
 
+    land_owner = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    land_location = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+
+    google_map_location = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    width = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    length = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    size = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
     
+
     class Meta:
         model = AgriAsset
         fields = ['land_owner', 'land_location', 'google_map_location', 'width', 'length', 'size', 'cultivation_method','owner_type']
 
 
 class ContactForm(forms.ModelForm):
+
+
+    name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    phone = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    email = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    referral = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+
+
     class Meta:
         model = Contact
         fields = ['user','name', 'phone', 'email', 'referral' ]
