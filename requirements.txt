@@ -4,3 +4,4 @@ pymysql
 tailwind
 openpyxl
 python-dateutil
+mysqlclient==2.0.3
