@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-417zqa0@u=x9tz1y_l^ioqvhve(i&a!_me@xjh#ga6oku_aw_u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['farmer.scatech.in', 'www.farmer.scatech.in']
+ALLOWED_HOSTS = ['farmer.scatech.in', 'www.farmer.scatech.in','20.164.18.48','localhost']
 
 
 # Application definition
