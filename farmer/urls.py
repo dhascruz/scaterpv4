@@ -6,6 +6,8 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
+
+    path('', views.redirect_to_login),
     path('register/', views.register, name='register'),
     path('register_farmer_detail/<int:user_id>/', views.register_farmer_detail, name='register_farmer_detail'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),

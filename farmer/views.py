@@ -6,9 +6,11 @@ from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 import logging
+from django.shortcuts import redirect
 logger = logging.getLogger(__name__)
 
-
+def redirect_to_login(request):
+    return redirect('login')
 
 def register(request):
     if request.method == 'POST':
