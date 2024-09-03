@@ -22,25 +22,16 @@
 
             {% block content %}
               <h1>Confirm Delete</h1>
-              <p>Are you sure you want to delete "{{ asset.land_owner }}"?</p>
+              <p>Are you sure you want to delete "{{ product.crop_name }}"?</p>
               <form method="post">
                 {% csrf_token %}
                 <button type="submit">Yes, delete</button>
-                <a href="{% url 'asset_list' %}">Cancel</a>
+                <a href="{% url 'farmer_product_list' %}">Cancel</a>
               </form>
             {% endblock %}
             
 
 
-                
-                   <!-- end row -->
-
-       
-
-
-
-
-            <!--page content start-->
 
 
 

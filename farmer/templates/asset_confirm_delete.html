@@ -26,7 +26,7 @@
               <form method="post">
                 {% csrf_token %}
                 <button type="submit">Yes, delete</button>
-                <a href="{% url 'asset_list' %}">Cancel</a>
+                <a href="{% url 'farmer_asset_list' %}">Cancel</a>
               </form>
             {% endblock %}
             

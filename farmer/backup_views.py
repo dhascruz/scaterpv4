@@ -152,23 +152,6 @@ def products(request):
     return render(request, 'farmer/products.html',  {'user_id': user_id})
 
 
-
-
-
-
-
-    #    return render(request, 'asset_list.html', {'assets': assets,'user_id': user_id })    
-
-
-
-
-
-    #return render(request, 'agri_product_list.html', {'agri_products': agri_products,'user_id': user_id})
-
-    #    return render(request, 'asset_list.html', {'assets': assets,'user_id': user_id })    
-
-
-
 @login_required
 def projection(request):
     id=1
@@ -190,41 +173,6 @@ def my_contacts(request):
 
 
 
-
-
-# def product_list(request):
-#     products = AgriculturalProduct.objects.filter(user=request.user)
-#     return render(request, 'farmer/products.html', {'products': products})
-
-# def product_create(request):
-#     if request.method == 'POST':
-#         form = AgriculturalProductForm(request.POST)
-#         if form.is_valid():
-#             product = form.save(commit=False)
-#             product.user = request.user
-#             product.save()
-#             return redirect('product_list')
-#     else:
-#         form = AgriculturalProductForm()
-#     return render(request, 'farmer/products_form.html', {'form': form})
-
-# def product_update(request, pk):
-#     product = get_object_or_404(AgriculturalProduct, pk=pk, user=request.user)
-#     if request.method == 'POST':
-#         form = AgriculturalProductForm(request.POST, instance=product)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('product_list')
-#     else:
-#         form = AgriculturalProductForm(instance=product)
-#     return render(request, 'farmer/products_form.html', {'form': form})
-
-# def product_delete(request, pk):
-#     product = get_object_or_404(AgriculturalProduct, pk=pk, user=request.user)
-#     if request.method == 'POST':
-#         product.delete()
-#         return redirect('product_list')
-#     return render(request, 'farmer/products_confirm_delete.html', {'product': product})
 
 
 @login_required
@@ -344,52 +292,6 @@ def get_category_image_url(category_id):
 
 
 
-###category admin start
-@login_required
-
-def category_list(request):
-    categories = Category.objects.all()
-    return render(request, 'category_list.html', {'categories': categories})
-
-@login_required
-
-def category_create(request):
-    if request.method == 'POST':
-        form = CategoryForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('category_list')
-    else:
-        form = CategoryForm()
-    return render(request, 'category_form.html', {'form': form})
-
-@login_required
-
-def category_edit(request, id):
-    category = get_object_or_404(Category, id=id)
-    if request.method == 'POST':
-        form = CategoryForm(request.POST, request.FILES, instance=category)
-        if form.is_valid():
-            form.save()
-            return redirect('category_list')
-    else:
-        form = CategoryForm(instance=category)
-    return render(request, 'category_form.html', {'form': form})
-
-@login_required
-
-def category_delete(request, id):
-    category = get_object_or_404(Category, id=id)
-    if request.method == 'POST':
-        category.delete()
-        return redirect('category_list')
-    return render(request, 'category_confirm_delete.html', {'category': category})
-
-
-###category admin end
-
-
-
 
 
 ###category admin start
@@ -478,6 +380,10 @@ def farmer_profile_list(request):
 
 ###farmer contact list start
 
+def farmer_contact_list(request):
+    #farmers = FarmerDetail.objects.all()
+    #return render(request, 'farmer_profile_list.html', {'farmers': farmers})
+    return render(request, 'farmer/farmer_contact22_list.html')
 
 # def Farmer_create(request):
 #     if request.method == 'POST':
@@ -509,58 +415,6 @@ def farmer_profile_list(request):
 
 
 ###farmer contat list end
-
-login_required
-def user_list(request):
-    user_id = request.user.id
-
-    customusers = CustomUser.objects.all();
-    return render(request, 'user_list.html', {'customusers': customusers,'user_id': user_id})
-
-    #return render(request, 'user_form.html', {'form': form,'user_id': user_id })
-
-
-login_required
-def user_create(request):
-    user_id = request.user.id
-
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('user_list')
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'user_form.html', {'form': form,'user_id': user_id })
-
-@login_required
-
-def user_edit(request, id):
-    user_id = request.user.id
-    user = get_object_or_404(CustomUser, id=id)
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('user_list')
-    else:
-        form = CustomUserCreationForm(instance=user)
-    return render(request, 'user_form.html', {'form': form,'user_id': user_id })
-
-@login_required
-
-def user_delete(request, id):
-    user_id = request.user.id
-    user = get_object_or_404(CustomUser, id=id)
-    if request.method == 'POST':
-        user.delete()
-        return redirect('user_list')
-    return render(request, 'user_confirm_delete.html', {'user': user,'user_id': user_id })
-
-
-
-
-
 
 ### agri asset start
 @login_required

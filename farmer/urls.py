@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.urls import path,include
 from django.contrib.auth import views as auth_views
 from . import views
+from . import admin_views
 
 urlpatterns = [
 
@@ -19,17 +20,38 @@ urlpatterns = [
 
 
     ###urls admin to add categories
-   path('categories/', views.category_list, name='category_list'),
-    path('categories/new/', views.category_create, name='category_create'),
-    path('categories/edit/<int:id>/', views.category_edit, name='category_edit'),
-    path('categories/delete/<int:id>/', views.category_delete, name='category_delete'),
+   path('categories/', admin_views.category_list, name='category_list'),
+    path('categories/new/', admin_views.category_create, name='category_create'),
+    path('categories/edit/<int:id>/', admin_views.category_edit, name='category_edit'),
+    path('categories/delete/<int:id>/', admin_views.category_delete, name='category_delete'),
     ###urls admin to add categories
 
 
-    path('users_list', views.user_list, name='user_list'),
-    path('users/new/', views.user_create, name='user_create'),
-    path('users/edit/<int:id>/', views.user_edit, name='user_edit'),
-    path('users/delete/<int:id>/', views.user_delete, name='user_delete'),
+    path('users_list', admin_views.user_list, name='user_list'),
+    path('users/new/', admin_views.user_create, name='user_create'),
+    path('users/edit/<int:id>/', admin_views.user_edit, name='user_edit'),
+    path('users/delete/<int:id>/', admin_views.user_delete, name='user_delete'),
+
+
+    path('farmer_asset_list/', admin_views.farmer_asset_list, name='farmer_asset_list'),
+    path('assets/new/', admin_views.asset_create, name='asset_create'),
+    path('assets/edit/<int:id>/', admin_views.asset_edit, name='asset_edit'),
+    path('assets/delete/<int:id>/', admin_views.asset_delete, name='asset_delete'),
+
+
+    path('farmer_product_list/', admin_views.farmer_product_list, name='farmer_product_list'),
+    path('admin_product_create/', admin_views.admin_add_agri_product, name='add_agri_product'),
+    path('admin_product/<int:pk>/edit/', admin_views.admin_agri_product_update, name='agri_product_update'),
+    path('admin_product/<int:pk>/delete/', admin_views.admin_agri_product_delete, name='agri_product_delete'),
+    #path('add-category/', admin_views.add_category, name='add_category'),
+
+
+    #path('contact_list/', admin_views.farmer_contact_list, name='contact_list'),
+    path('farmer_contact_list/', admin_views.farmer_contact_list, name='farmer_contact_list'),
+    path('contacts/add/', admin_views.farmer_add_contact, name='add_contact'),
+    path('contacts/<int:pk>/edit/', admin_views.farmer_edit_contact, name='edit_contact'),
+    path('contacts/<int:pk>/delete/', admin_views.farmer_delete_contact, name='delete_contact'),
+
 
 
     ###urls admin to add farmers
@@ -41,14 +63,14 @@ urlpatterns = [
 
 
 ###urls admin to add farmer profiles
-    path('farmer_asset_list/', views.farmer_asset_list, name='farmer_asset_list'),
+    
     # path('categories/new/', views.category_create, name='category_create'),
     # path('categories/edit/<int:id>/', views.category_edit, name='category_edit'),
     # path('categories/delete/<int:id>/', views.category_delete, name='category_delete'),
     # ###urls admin to add farmer profiles
 
 ###urls admin to add farmer profiles
-    path('farmer_product_list/', views.farmer_product_list, name='farmer_product_list'),
+    
     # path('categories/new/', views.category_create, name='category_create'),
     # path('categories/edit/<int:id>/', views.category_edit, name='category_edit'),
     # path('categories/delete/<int:id>/', views.category_delete, name='category_delete'),
@@ -56,7 +78,7 @@ urlpatterns = [
 
 
 ###urls admin to add farmer contact
-   path('farmer_contact_list/', views.farmer_contact_list, name='farmer_contact_list'),
+   
     # path('categories/new/', views.category_create, name='category_create'),
     # path('categories/edit/<int:id>/', views.category_edit, name='category_edit'),
     # path('categories/delete/<int:id>/', views.category_delete, name='category_delete'),
@@ -84,10 +106,7 @@ urlpatterns = [
     path('farmer/product/<int:pk>/delete/', views.agri_product_delete, name='product_update'),
     path('add-category/', views.add_category, name='add_category'),
 
-    path('farmer/assets/', views.asset_list, name='asset_list'),
-    path('farmer/assets/new/', views.asset_create, name='asset_create'),
-    path('farmer/assets/edit/<int:id>/', views.asset_edit, name='asset_edit'),
-    path('farmer/assets/delete/<int:id>/', views.asset_delete, name='asset_delete'),
+   
 
 
 

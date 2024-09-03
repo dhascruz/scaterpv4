@@ -1,0 +1,122 @@
+
+{% load static %}
+
+{% include 'includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            <div  id="Profile_Projection" role="tabpanel" aria-labelledby="portfolio_detail_tab">
+                <li class="creat-btn">
+                    <div class="nav-link">
+                        <a class=" btn btn-sm btn-soft-primary" href="/assets/new" role="button"><i class="fas fa-plus me-2"></i>Add your Asset</a>
+                    </div>                                
+                </li>
+                
+
+ 
+                <div class="row">
+                    <div class="col-12">
+                        
+          
+
+                {% block content %}
+                  <h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Agricultural Asset</h2>
+                
+                  <form method="post" class="col-12">
+                    {% csrf_token %}
+
+
+                    <div class="mb-3">
+                      <label for="exampleInputEmail" class="form-label">Land owner Name</label>
+                      {{ form.land_owner }}
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputEmail" class="form-label">Land Location</label>
+                    {{ form.land_location }}
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail" class="form-label">Google Map  Location</label>
+                  {{ form.google_map_location }}
+              </div>
+
+
+              <div class="mb-3">
+                <label for="exampleInputEmail" class="form-label">Land Width</label>
+                {{ form.width }}
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail" class="form-label">Land Length</label>
+              {{ form.length }}
+          </div>
+
+
+          <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Land Size</label>
+            {{ form.size }}
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail" class="form-label">Choose the Cultivation method</label>
+          {{ form.cultivation_method }}
+      </div>
+
+      
+      <div class="mb-3">
+        <label for="exampleInputEmail" class="form-label">Choose the Owner type</label>
+        {{ form.owner_type }}
+      </div>
+
+                    
+                    
+                    <button type="submit" class="btn btn-primary">
+                      {% if form.instance.pk %}Save Changes{% else %}Create Asset{% endif %}
+                    </button>
+                    <a href="{% url 'farmer_asset_list' %}" class="btn btn-secondary">Cancel</a>
+                  </form>
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                
+            </div>
+            
+            
+            <!--end tab-pane-->
+
+                    
+
+                   <!-- end row -->
+
+       
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'farmer/includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>
