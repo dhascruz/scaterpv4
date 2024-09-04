@@ -1,16 +1,17 @@
+{% load i18n %}
 
 {% load static %}
 
-{% include 'includes/header.html' %}
+{% include 'farmer/includes/header.html' %}
 
     <body class="">
       
-        {% include 'includes/sidenav.html' %}
+        {% include 'farmer/includes/sidenav.html' %}
 
         <div class="page-wrapper">
             <!-- Top Bar Start -->
 
-            {% include 'includes/top_bar.html' %}
+            {% include 'farmer/includes/top_bar.html' %}
           
             <!-- Top Bar End -->
 
@@ -37,7 +38,7 @@
                                     <div class="page-title-box">
                                         <div class="row">
                                             <div class="col">
-                                                <h4 class="page-title">Contacts</h4>
+                                                <h4 class="page-title">{% trans "My Contacts" %}</h4>
                                                 <ol class="breadcrumb">
                                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Farmer</a></li>
                                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Contacts</a></li>

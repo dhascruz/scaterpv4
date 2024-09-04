@@ -1,0 +1,156 @@
+
+{% load static %}
+
+{% include 'includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+        
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                                                                      
+                            </div><!--end page-title-box-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                  
+    
+                    <div class="page-content">
+                        <div class="container-fluid">
+                            <!-- Page-Title -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="page-title-box">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h4 class="page-title">Contacts</h4>
+                                                <ol class="breadcrumb">
+                                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Farmer</a></li>
+                                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Contacts</a></li>
+                                                    
+                                                </ol>
+                                            </div><!--end col-->
+                                            
+                                            <div class="col-auto align-self-center">                                        
+                                                <div class="d-inline-block">
+                                                    <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
+                                                        <span class="day-name" id="Day_Name">Today:</span>&nbsp;
+                                                        <span class="" id="Select_date">Jan 11</span>
+                                                        <i data-feather="calendar" class="align-self-center icon-xs ms-1"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                                        <i data-feather="download" class="align-self-center icon-xs"></i>
+                                                    </a>
+                                                </div>                                        
+                                            </div><!--end col-->  
+                                        </div><!--end row-->                                                              
+                                    </div><!--end page-title-box-->
+                                </div><!--end col-->
+                            </div><!--end row-->
+                            <!-- end page title end breadcrumb -->
+                                <div class="nav-link">
+                                    <a class=" btn btn-sm btn-soft-primary" href="/farmer/contacts/add" role="button"><i class="fas fa-plus me-2"></i>Add your Contact</a>
+                                </div>                                
+                            
+                            <div class="row">
+
+
+                                {% for contact in contacts %}
+                                <div class="col-lg-3">
+                                    <div class="card">                               
+                                        <div class="card-body">                                                     
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="media">
+                                                        <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-lg align-self-center">
+                                                        <div class="media-body ms-3 align-self-center">
+                                                            <h5 class="mt-0 mb-1">{{contact.name}}</h5> 
+                                                            <p class="mb-0 text-muted">{{contact.phone}}</p>
+                                                            <p class="mb-0 text-muted">{{contact.email}}</p>
+                                                        </div>
+                                                    </div><!--end media--> 
+                                                </div><!--end col-->
+                                                <div class="col-auto align-self-center">
+                                                    <ul class="list-inline mb-0">
+                                                        <li class="list-inline-item">
+                                                            <a href="{{contact.phone}}" class="me-1 contact-icon"><i class="fas fa-phone"></i></a>
+                                                            <a href="{{contact.email}}" class="contact-icon"><i class="far fa-envelope"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="list-inline mb-0" >
+                                                        <li class="list-inline-item" style="margin-top: 10px;">
+                                                            <a class="btn btn-sm btn-warning" href="/farmer/contacts/{{ contact.id }}/edit"> <span class="fa fa-edit"></span> Edit</a>
+                                                            <a class="btn btn-sm btn-danger" href="/farmer/contacts/{{ contact.id }}/delete"><span class="fa fa-trash"></span> Delete</a>
+                                                        </li>
+                                                    </ul>
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </div><!--end card-body-->                                                                     
+                                    </div><!--end card-->
+                                </div><!--end col-->  
+                               
+                                {% endfor %}
+                                                                                                              
+                            </div><!--end row-->
+                      
+                        </div><!-- container -->
+        
+                        <footer class="footer text-center text-sm-start">
+                            &copy; <script>
+                                document.write(new Date().getFullYear())
+                            </script> Dastone <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i
+                                    class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
+                        </footer><!--end footer-->
+                    </div>
+                  
+
+            
+
+                </div><!-- container -->
+
+              
+
+
+
+
+
+            
+            
+            
+            <!--end tab-pane-->
+
+                    
+
+                   <!-- end row -->
+
+       
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>

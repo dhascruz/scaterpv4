@@ -17,6 +17,7 @@ urlpatterns = [
     path('/', views.adminhome, name='adminhome'),
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('farmer-dashboard/', views.farmer_dashboard, name='farmer_dashboard'),
+    path('outlet-dashboard/', views.outlet_dashboard, name='outlet-dashboard'),
 
 
     ###urls admin to add categories

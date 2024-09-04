@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-04 08:43+0530\n"
+"POT-Creation-Date: 2024-09-04 14:30+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,142 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\farmer\templates\agri_product_list.html:28
+#: .\farmer\templates\farmer\agri_product_list.html:28
+#: .\farmer\templates\outlet\includes\sidenav.html:25
+
+msgid "Products"
+msgstr "வேளாண் பொருட்கள்"
+
+#: .\farmer\templates\farmer\asset_list.html:27
+#: .\farmer\templates\farmer\includes\sidenav.html:24
+#: .\farmer\templates\outlet\includes\sidenav.html:24
+msgid "Assets"
+msgstr "சொத்துக்கள்"
+
+#: .\farmer\templates\farmer\contact_list.html:41
+#: .\farmer\templates\farmer\includes\sidenav.html:27
+#: .\farmer\templates\outlet\includes\sidenav.html:27
+msgid "My Contacts"
+msgstr "நண்பர்கள்"
+
+#: .\farmer\templates\farmer\includes\sidenav.html:22
+#: .\farmer\templates\includes\sidenav.html:21
+#: .\farmer\templates\outlet\includes\sidenav.html:22
+msgid "Dashboard"
+msgstr "தகவல் பட்டியல்"
+
+#: .\farmer\templates\farmer\includes\sidenav.html:25
+#: .\farmer\templates\includes\sidenav.html:37
+msgid "Farmers Products List"
+msgstr "வேளாண் பொருட்கள் பட்டியல்"
+
+#: .\farmer\templates\farmer\includes\sidenav.html:32
+#: .\farmer\templates\outlet\includes\sidenav.html:32
+msgid "My Profile"
+msgstr "எனது சுயவிவரம்"
+
+#: .\farmer\templates\farmer\includes\sidenav.html:36
+#: .\farmer\templates\outlet\includes\sidenav.html:36
+msgid "Personal information"
+msgstr "தனிப்பட்ட தகவல்"
+
+#: .\farmer\templates\farmer\index.html:53
+#: .\farmer\templates\outlet\index.html:53
+msgid "Product List"
+msgstr "வேளாண் பொருட்கள் பட்டியல்"
+
+#: .\farmer\templates\farmer\index.html:59
+#: .\farmer\templates\outlet\index.html:59
+msgid "Edit"
+msgstr "திருத்தவும்"
+
+#: .\farmer\templates\farmer\index.html:60
+#: .\farmer\templates\outlet\index.html:60
+msgid "Delete"
+msgstr "நீக்கவும்"
+
+#: .\farmer\templates\farmer\index.html:84
+#: .\farmer\templates\outlet\index.html:84
+msgid "Add Product"
+msgstr "வேளாண் பொருட்கள் சேர்க்க"
+
+#: .\farmer\templates\includes\sidenav.html:23
+msgid "Users List"
+msgstr "பயனர் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:30
+msgid "Farmers"
+msgstr "விவசாயிகள்"
+
+#: .\farmer\templates\includes\sidenav.html:34
+msgid "Category List"
+msgstr "வகை பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:35
+msgid "Farmers List"
+msgstr "விவசாயிகள் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:36
+msgid "Farmers Assets List"
+msgstr "விவசாயிகள் சொத்து "
+
+#: .\farmer\templates\includes\sidenav.html:38
+msgid "Farmers Contact List"
+msgstr "விவசாயிகள் நண்பர்கள் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:47
+msgid "Outlet"
+msgstr "விற்பனை நிலையம் "
+
+#: .\farmer\templates\includes\sidenav.html:51
+#, fuzzy
+#| msgid "Farmers Contact List"
+msgid "Outlet List"
+msgstr "விவசாயிகள் நண்பர்கள் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:52
+#, fuzzy
+#| msgid "Godown Profile List"
+msgid "Outlet Profile List"
+msgstr "குடோன் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:53
+#, fuzzy
+#| msgid "Farmers Contact List"
+msgid "Outlets Contact List"
+msgstr "விவசாயிகள் நண்பர்கள் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:61
+msgid "Godown"
+msgstr "குடோன்"
+
+#: .\farmer\templates\includes\sidenav.html:65
+msgid "Godown List"
+msgstr "குடோன் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:66
+msgid "Godown Profile List"
+msgstr "குடோன் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:67
+#, fuzzy
+#| msgid "Farmers Contact List"
+msgid "Godown Contact List"
+msgstr "விவசாயிகள் நண்பர்கள் பட்டியல்"
+
+#: .\farmer\templates\includes\sidenav.html:91
+msgid "Mail Configuration"
+msgstr "அஞ்சல் கட்டமைப்பு"
+
+#: .\farmer\templates\includes\sidenav.html:92
+msgid "SMS Configuration"
+msgstr "sms கட்டமைப்பு"
+
+#: .\farmer\templates\includes\sidenav.html:93
+msgid "General Settings"
+msgstr "பொது அமைப்புகள்"
 
 #: .\farmer\templates\login.html:95
 msgid "Remember me"
@@ -38,20 +174,6 @@ msgstr "கணக்கு இல்லையா?"
 msgid "Free Register"
 msgstr "பதிவு செய்யுங்கள்"
 
-#~ msgid "Articles"
-#~ msgstr "கட்டுரைகள்"
-
-#~ msgid "All the articles"
-#~ msgstr "அனைத்து கட்டுரைகளும்"
-
-#~ msgid "Discover all our blog articles"
-#~ msgstr "எங்கள் வலைப்பதிவு கட்டுரைகள் அனைத்தையும் கண்டறியவும்"
-
-#~ msgid "Published on"
-#~ msgstr "கட்டுரைகளுக்குத் திரும்பு"
-
-#~ msgid "Back to the articles"
-#~ msgstr "கட்டுரைகளுக்குத் திரும்பு"
-
-#~ msgid "The title in english"
-#~ msgstr "கட்டுரைகளுக்குத் திரும்பு"
+#: .\farmer\templates\outlet\includes\sidenav.html:26
+msgid "Projections"
+msgstr "கணிப்புகள்"

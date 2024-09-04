@@ -1,8 +1,32 @@
-
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
     {% load static %}
 
+    
+<header>
+    
+    <div class="language-switcher">
+        <form action="{% url 'set_language' %}" method="post" class="flex items-center">
+            {% csrf_token %} <!-- Security token  -->
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+
+            <button type="submit" name="language" value="en">
+                <img src="{% static 'assets/images/uk_flag.png' %}" alt="English language" style="width:30px;">
+            </button>
+
+        
+
+            <button type="submit" name="language" value="ta">
+                <img src="{% static 'assets/images/ta_india.png' %}" alt="à®¤à®®à®¿à®´à¯ à®®à¯Šà®´à®¿" style="width:30px;">
+            </button>
+        </form>
+
+    </div>
+</header>
     <head>
         <meta charset="utf-8" />
         <title>SCAT ERP</title>

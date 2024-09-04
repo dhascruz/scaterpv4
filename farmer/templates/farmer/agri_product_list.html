@@ -1,4 +1,4 @@
-
+{% load i18n %}
 {% load static %}
 
 {% include 'farmer/includes/header.html' %}
@@ -25,7 +25,8 @@
                             <div class="page-title-box">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="page-title">Product</h4>
+                                        
+                                        <h4 class="page-title">{% trans "Products" %}</h4>
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="javascript:void(0);">Farmer</a></li>
                                             <li class="breadcrumb-item"><a href="javascript:void(0);">Products</a></li>

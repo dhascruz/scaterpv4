@@ -1,4 +1,6 @@
-  <!-- Left Sidenav -->
+
+{% load i18n %}
+<!-- Left Sidenav -->
   <div class="left-sidenav">
     <!-- LOGO -->
     <div class="brand">
@@ -17,21 +19,21 @@
         <ul class="metismenu left-sidenav-menu">
             <li class="menu-label mt-0">Main</li>
             <li>
-                <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>{% trans "Dashboard" %}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                  <ul class="nav-second-level" aria-expanded="false">
-                    <li class="nav-item"><a class="nav-link" href="/farmer/assets"><i class="ti-control-record"></i>Assets</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/farmer/product_list"><i class="ti-control-record"></i>Products</a></li>
-                    <!--<li class="nav-item"><a class="nav-link" href="/farmer/projection"><i class="ti-control-record"></i>Projections</a></li>-->
-                    <li class="nav-item"><a class="nav-link" href="/farmer/contact_list"><i class="ti-control-record"></i>My Contacts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/farmer/assets"><i class="ti-control-record"></i>{% trans "Assets" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/farmer/product_list"><i class="ti-control-record"></i>{% trans "Farmers Products List" %}</a></li>
+                    
+                    <li class="nav-item"><a class="nav-link" href="/farmer/contact_list"><i class="ti-control-record"></i>{% trans "My Contacts" %}</a></li>
                 </ul> 
             </li>
 
             <li>
-                <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>My Profile</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>{% trans "My Profile" %}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                  
                  
-                    <li class="nav-item"><a class="nav-link" href="/farmer/personal_information/{{user_id}}"><i class="ti-control-record"></i>Personal information</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/farmer/personal_information/{{user_id}}"><i class="ti-control-record"></i>{% trans "Personal information" %}</a></li>
                    
                     
                     

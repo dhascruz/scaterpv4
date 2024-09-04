@@ -1,4 +1,4 @@
-
+{% load i18n %}
 {% load static %}
 
 {% include 'includes/header.html' %}
@@ -26,11 +26,11 @@
                             <div class="page-title-box">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="page-title">Dashboard</h4>
+                                        <h4 class="page-title">{% trans "Farmers List" %}</h4>
                                         <ol class="breadcrumb">
                                             
                                             <li class="breadcrumb-item"><a href="javascript:void(0);">Farmers</a></li>
-                                            <li class="breadcrumb-item active">Farmers List</li>
+                                            
                                         </ol>
                                     </div><!--end col-->
                                     <div class="col-auto align-self-center">
@@ -53,7 +53,6 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Farmers List</h4>
                                   
                                 </div><!--end card-header-->
                                

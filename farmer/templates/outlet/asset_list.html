@@ -1,0 +1,131 @@
+
+{% load static %}
+
+{% include 'farmer/includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'farmer/includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'farmer/includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="page-title">Assets</h4>
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="javascript:void(0);">Farmer</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript:void(0);">Assets</a></li>
+                                            
+                                        </ol>
+                                    </div><!--end col-->
+                                    
+                                    <div class="col-auto align-self-center">                                        
+                                        <div class="d-inline-block">
+                                            <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
+                                                <span class="day-name" id="Day_Name">Today:</span>&nbsp;
+                                                <span class="" id="Select_date">Jan 11</span>
+                                                <i data-feather="calendar" class="align-self-center icon-xs ms-1"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                                <i data-feather="download" class="align-self-center icon-xs"></i>
+                                            </a>
+                                        </div>                                        
+                                    </div><!--end col-->  
+                                </div><!--end row-->                                                              
+                            </div><!--end page-title-box-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+
+            <!-- Page Content-->
+            <div  id="Profile_Projection" role="tabpanel" aria-labelledby="portfolio_detail_tab">
+                <li class="creat-btn">
+                    <div class="nav-link">
+                        <a class=" btn btn-sm btn-soft-primary" href="/farmer/assets/new" role="button"><i class="fas fa-plus me-2"></i>Add your Asset</a>
+                    </div>                                
+                </li>
+                <div class="row">
+                    <div class="col-md-6">
+                       
+                       
+                        {% for asset in assets %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="ribbon4 rib4-primary">
+                                    <span class="ribbon4-band ribbon4-band-primary text-white text-center full-caps" style="text-transform: uppercase;
+    font-size: larger;">{{asset.owner_type}}</span>                                        
+                                </div><!--end ribbon-->  
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <img src="{{cat_image}}" alt="user" height="150" class="align-self-center mb-3 mb-lg-0">
+                                    </div><!--end col-->
+                                    <div class="col align-self-center">
+                                        <p class="font-18 fw-semibold mb-2">{{asset.land_owner}}</p>
+                                        <p class="text-muted">Dastyle is a Bootstrap 4 admin dashboard, 
+                                            It is fully responsive and included awesome 
+                                            features to help build web applications fast and easy.
+                                        </p>
+                                        
+                                    </div>
+                                    
+                                    <div style="z-index:90; border=:0;">
+                                        
+                                        <a href="{{asset.google_map_location}}" targebt="_blank" ><p>test</p></a>
+                                        <a href="{{asset.google_map_location}}" target="_blank" class="btn btn-soft-primary btn-sm">Live Map Location</a> 
+                                        <a href="#" class="btn btn-soft-primary btn-sm">Download Related documents</a> 
+                                        <span style="text-align:right">
+                                        <a class="btn btn-sm btn-warning" href="/farmer/assets/edit/{{ asset.id }}"> <span class="fa fa-edit"></span> Edit</a>
+                                        <a class="btn btn-sm btn-danger" href="/farmer/assets/delete/{{ asset.id }}"><span class="fa fa-trash"></span> Delete</a>
+                                        </span>
+                                    </div>
+                                    <!--end col-->
+                                </div> <!--end row-->  
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                        {% endfor %}
+
+
+                    </div><!--end col-->  
+                                                 
+                </div>  <!--end row-->
+
+             
+  <!--end row-->
+  <!--end row-->
+            </div>
+            
+            
+            <!--end tab-pane-->
+
+                    
+
+                   <!-- end row -->
+
+       
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'farmer/includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>

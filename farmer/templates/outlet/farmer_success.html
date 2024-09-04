@@ -1,0 +1,111 @@
+
+{% load static %}
+
+{% include 'farmer/includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'farmer/includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'farmer/includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            <div id="Profile_Settings" role="tabpanel" aria-labelledby="settings_detail_tab">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">                      
+                                        <h4 class="card-title">Personal Information</h4>                      
+                                    </div><!--end col-->                                                       
+                                </div>  <!--end row-->                                  
+                            </div><!--end card-header-->
+
+                            <form method="post">
+                                
+                           
+                                {% csrf_token %}
+                                
+                            <div class="card-body">                       
+                               
+
+
+                                <div class="form-group row">
+                                    <p>Successfully created</p>
+                                </div>                                                    
+
+
+
+
+                              
+
+                                                   
+                            </div>                                            
+                        </div>
+                    </div> <!--end col--> 
+                    <div class="col-lg-6 col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Change Password</h4>
+                            </div><!--end card-header-->
+                            <div class="card-body"> 
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Current Password</label>
+                                    <div class="col-lg-9 col-xl-8">
+                                        <input class="form-control" type="password" placeholder="Password">
+                                        <a href="#" class="text-primary font-12">Forgot password ?</a>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">New Password</label>
+                                    <div class="col-lg-9 col-xl-8">
+                                        <input class="form-control" type="password" placeholder="New Password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Confirm Password</label>
+                                    <div class="col-lg-9 col-xl-8">
+                                        <input class="form-control" type="password" placeholder="Re-Password">
+                                        <span class="form-text text-muted font-12">Never share your password.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-9 col-xl-8 offset-lg-3">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Change Password</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger">Cancel</button>
+                                    </div>
+                                </div>   
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </form>
+                    </div> <!-- end col -->                                                                              
+                </div><!--end row-->
+            </div><!--end tab-pane-->
+
+                    
+
+                   <!-- end row -->
+
+       
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'farmer/includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>

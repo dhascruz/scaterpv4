@@ -1,4 +1,5 @@
-  <!-- Left Sidenav -->
+{% load i18n %}
+<!-- Left Sidenav -->
   <div class="left-sidenav">
     <!-- LOGO -->
     <div class="brand">
@@ -17,23 +18,23 @@
         <ul class="metismenu left-sidenav-menu">
             <li class="menu-label mt-0">Main</li>
             <li>
-                <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>{% trans "Dashboard" %}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                  <ul class="nav-second-level" aria-expanded="false">
-                    <li class="nav-item"><a class="nav-link" href="/users_list"><i class="ti-control-record"></i>Users List</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/users_list"><i class="ti-control-record"></i>{% trans "Users List" %}</a></li>
                     {% comment %} <li class="nav-item"><a class="nav-link" href="sales-index.html"><i class="ti-control-record"></i>Sales</a></li>  {% endcomment %}
                 </ul> 
             </li>
 
             <li>
-                <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Farmers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>{% trans "Farmers" %}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                  
                  
-                    <li class="nav-item"><a class="nav-link" href="/categories"><i class="ti-control-record"></i>Category List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/farmer_list"><i class="ti-control-record"></i>Farmers List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/farmer_asset_list"><i class="ti-control-record"></i>Farmers Assets List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/farmer_product_list"><i class="ti-control-record"></i>Farmers Products List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/farmer_contact_list"><i class="ti-control-record"></i>Farmers Contact List</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/categories"><i class="ti-control-record"></i>{% trans "Category List" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/farmer_list"><i class="ti-control-record"></i>{% trans "Farmers List" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/farmer_asset_list"><i class="ti-control-record"></i>{% trans "Farmers Assets List" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/farmer_product_list"><i class="ti-control-record"></i>{% trans "Farmers Products List" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/farmer_contact_list"><i class="ti-control-record"></i>{% trans "Farmers Contact List" %}</a></li>
                     
                     
                     
@@ -42,13 +43,13 @@
 
 
             <li>
-                <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Outlet</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>{% trans "Outlet" %}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                  
                  
-                    <li class="nav-item"><a class="nav-link" href="farmer_list"><i class="ti-control-record"></i>Outlet List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="farmer_profile_list"><i class="ti-control-record"></i>Outlet Profile List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="farmer_contact_list"><i class="ti-control-record"></i>Outlets Contact List</a></li>
+                    <li class="nav-item"><a class="nav-link" href="farmer_list"><i class="ti-control-record"></i>{% trans "Outlet List" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="farmer_profile_list"><i class="ti-control-record"></i>{% trans "Outlet Profile List" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="farmer_contact_list"><i class="ti-control-record"></i>{% trans "Outlets Contact List" %}</a></li>
                     
                     
                 </ul>
@@ -56,13 +57,13 @@
 
 
             <li>
-                <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Godown</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>{% trans "Godown" %}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                  
                  
-                    <li class="nav-item"><a class="nav-link" href="farmer_list"><i class="ti-control-record"></i>Godown List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="farmer_profile_list"><i class="ti-control-record"></i>Godown Profile List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="farmer_contact_list"><i class="ti-control-record"></i>Godown Contact List</a></li>
+                    <li class="nav-item"><a class="nav-link" href="farmer_list"><i class="ti-control-record"></i>{% trans "Godown List" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="farmer_profile_list"><i class="ti-control-record"></i>{% trans "Godown Profile List" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="farmer_contact_list"><i class="ti-control-record"></i>{% trans "Godown Contact List" %}</a></li>
                     
                     
                 </ul>
@@ -85,9 +86,9 @@
             <ul class="nav-second-level" aria-expanded="false">
                  
                  
-                <li class="nav-item"><a class="nav-link" href="farmer_list"><i class="ti-control-record"></i>Mail Configuration</a></li>
-                <li class="nav-item"><a class="nav-link" href="farmer_profile_list"><i class="ti-control-record"></i>SMS Configuration</a></li>
-                <li class="nav-item"><a class="nav-link" href="farmer_contact_list"><i class="ti-control-record"></i>General Settings</a></li>
+                <li class="nav-item"><a class="nav-link" href="farmer_list"><i class="ti-control-record"></i>{% trans "Mail Configuration" %}</a></li>
+                <li class="nav-item"><a class="nav-link" href="farmer_profile_list"><i class="ti-control-record"></i>{% trans "SMS Configuration" %}</a></li>
+                <li class="nav-item"><a class="nav-link" href="farmer_contact_list"><i class="ti-control-record"></i>{% trans "General Settings" %}</a></li>
                 
                 
             </ul>

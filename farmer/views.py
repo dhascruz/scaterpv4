@@ -46,12 +46,19 @@ def admin_check(user):
 def farmer_check(user):
     return user.role == 'farmer'
 
+def outlet_check(user):
+    return user.role == 'outlet'
+
+
+
 @login_required
 def dashboard(request):
     if request.user.role == 'admin':
         return redirect('/admin-dashboard')
     elif request.user.role == 'farmer':
         return redirect('/farmer-dashboard')
+    elif request.user.role == 'outlet':
+        return redirect('/outlet-dashboard')
     else:
         return redirect('login')
 
@@ -67,6 +74,17 @@ def adminhome(request):
     return render(request, 'index.html')
 
 
+@login_required
+@user_passes_test(outlet_check)
+def outlet_dashboard(request):
+    #outlet_detail = FarmerDetail.objects.get(user=request.user)
+    logger.info("dhas")
+    user_id = request.user.id
+    request.session['user_id'] = user_id
+    logger.info(user_id)
+    agri_products=get_all_products_with_category_images()
+
+    return render(request, 'outlet/index.html',  {'user_id': user_id, 'agri_products':agri_products})
 
 @login_required
 @user_passes_test(farmer_check)

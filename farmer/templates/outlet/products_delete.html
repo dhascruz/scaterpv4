@@ -1,0 +1,244 @@
+
+{% load static %}
+
+{% include 'farmer/includes/header.html' %}
+
+    <body class="">
+      
+        {% include 'farmer/includes/sidenav.html' %}
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+
+            {% include 'farmer/includes/top_bar.html' %}
+          
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            
+
+
+
+
+            {% block content %}
+              <h1>Confirm Delete</h1>
+              <p>Are you sure you want to delete "{{ product.crop_name }}"?</p>
+              <form method="post">
+                {% csrf_token %}
+                <button type="submit">Yes, delete</button>
+                <a href="{% url 'product_list' %}">Cancel</a>
+              </form>
+            {% endblock %}
+            
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div  id="Profile_Product" role="tabpanel" aria-labelledby="Profile_Product_tab">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <form>
+                                        <div class="input-group">                               
+                                            <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Search">
+                                            <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>                                                
+                                    </form>                                            
+                                </div><!--end col-->
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary"><i class="fas fa-filter"></i></button>
+                                    <button type="button" class="btn btn-primary">Add Product</button>                                                                                        
+                                </div><!--end col-->                                        
+                            </div><!--end row-->
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="assets/images/widgets/project2.jpg" alt="" class="rounded-circle d-block mx-auto mt-2" height="70">
+                                                <h4 class="m-0 fw-semibold text-dark font-16 mt-3">Body Care</h4>   
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-22 m-0 fw-bold">$26,100</h5> 
+                                                    <p class="mb-0 text-muted">Total Budget</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="assets/images/widgets/project4.jpg" alt="" class="rounded-circle d-block mx-auto mt-2" height="70">
+                                                <h4 class="m-0 fw-semibold text-dark font-16 mt-3">Book My World</h4>   
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Johnson M. delly</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-22 m-0 fw-bold">$71,100</h5> 
+                                                    <p class="mb-0 text-muted">Total Budget</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="assets/images/widgets/project3.jpg" alt="" class="rounded-circle d-block mx-auto mt-2" height="70">
+                                                <h4 class="m-0 fw-semibold text-dark font-16 mt-3">Banking</h4>   
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-22 m-0 fw-bold">$56,700</h5> 
+                                                    <p class="mb-0 text-muted">Total Budget</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="assets/images/widgets/project1.jpg" alt="" class="rounded-circle d-block mx-auto mt-2" height="70">
+                                                <h4 class="m-0 fw-semibold text-dark font-16 mt-3">Transfer money</h4>   
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Jack Z Jackson</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-22 m-0 fw-bold">$48,200</h5> 
+                                                    <p class="mb-0 text-muted">Total Budget</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->                                        
+                            </div><!--end row--> 
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="assets/images/widgets/project1.jpg" alt="" class="rounded-circle d-block mx-auto mt-2" height="70">
+                                                <h4 class="m-0 fw-semibold text-dark font-16 mt-3">Body Care</h4>   
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-22 m-0 fw-bold">$26,100</h5> 
+                                                    <p class="mb-0 text-muted">Total Budget</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="assets/images/widgets/project3.jpg" alt="" class="rounded-circle d-block mx-auto mt-2" height="70">
+                                                <h4 class="m-0 fw-semibold text-dark font-16 mt-3">Book My World</h4>   
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Johnson M. delly</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-22 m-0 fw-bold">$71,100</h5> 
+                                                    <p class="mb-0 text-muted">Total Budget</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="assets/images/widgets/project4.jpg" alt="" class="rounded-circle d-block mx-auto mt-2" height="70">
+                                                <h4 class="m-0 fw-semibold text-dark font-16 mt-3">Banking</h4>   
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-22 m-0 fw-bold">$56,700</h5> 
+                                                    <p class="mb-0 text-muted">Total Budget</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="text-center">
+                                                <img src="assets/images/widgets/project2.jpg" alt="" class="rounded-circle d-block mx-auto mt-2" height="70">
+                                                <h4 class="m-0 fw-semibold text-dark font-16 mt-3">Transfer money</h4>   
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Jack Z Jackson</p> 
+                                            </div>                                                    
+                                            <div class="row mt-4 d-flex align-items-center">
+                                                <div class="col">
+                                                    <h5 class="font-22 m-0 fw-bold">$48,200</h5> 
+                                                    <p class="mb-0 text-muted">Total Budget</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-sm btn-outline-secondary  px-4">More Details</a>
+                                                </div>
+                                            </div>                                                    
+                                        </div><!--end card-body-->          
+                                    </div> <!--end card-->    
+                                </div><!--end col-->                                        
+                            </div><!--end row-->                                   
+                        </div><!--end tab-pane-->
+                       <!--end tab-pane-->
+
+                    
+
+                   <!-- end row -->
+
+       
+
+
+
+
+            <!--page content start-->
+
+
+
+
+
+            {% include 'farmer/includes/footer.html' %}  
+    
+    
+            </body>
+
+</html>
