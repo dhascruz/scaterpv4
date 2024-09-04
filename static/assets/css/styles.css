@@ -11734,6 +11734,37 @@ select#id_owner_type {
 }
 
 
+
+.language-switcher {
+  position: absolute;
+  top: 10px; /* Adjust this value to control the vertical distance from the top */
+  right: 10px; /* Adjust this value to control the horizontal distance from the right */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.language-switcher form {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the flag buttons */
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.language-switcher button img {
+  width: 30px; /* Adjust the flag size if necessary */
+  height: auto;
+}
+
+.language-switcher button:focus {
+  outline: none; /* Remove outline on button focus */
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

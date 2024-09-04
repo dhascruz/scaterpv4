@@ -1,6 +1,34 @@
+{% load i18n %}
+{% load static %}
+
 
 <!DOCTYPE html>
 <html lang="en">
+
+<header>
+    
+    <div class="language-switcher">
+        <form action="{% url 'set_language' %}" method="post" class="flex items-center">
+            {% csrf_token %} <!-- Security token  -->
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+
+            <button type="submit" name="language" value="en">
+                <img src="{% static 'assets/images/uk_flag.png' %}" alt="English language" style="width:30px;">
+            </button>
+
+        
+
+            <button type="submit" name="language" value="ta">
+                <img src="{% static 'assets/images/ta_india.png' %}" alt="à®¤à®®à®¿à®´à¯ à®®à¯Šà®´à®¿" style="width:30px;">
+            </button>
+        </form>
+
+    </div>
+</header>
+
 
     <head>
         <meta charset="utf-8" />
@@ -64,24 +92,24 @@
                                                     <div class="col-sm-6">
                                                         <div class="custom-control custom-switch switch-success">
                                                             <input type="checkbox" class="custom-control-input" id="customSwitchSuccess">
-                                                            <label class="form-label text-muted" for="customSwitchSuccess">Remember me</label>
+                                                            <label class="form-label text-muted" for="customSwitchSuccess">{% trans "Remember me" %}</label>
                                                         </div>
                                                     </div><!--end col--> 
                                                     <div class="col-sm-6 text-end">
-                                                        <a href="auth-recover-pw.html" class="text-muted font-13"><i class="dripicons-lock"></i> Forgot password?</a>                                    
+                                                        <a href="auth-recover-pw.html" class="text-muted font-13"><i class="dripicons-lock"></i>{% trans "Forgot password?" %}</a>                                    
                                                     </div><!--end col--> 
                                                 </div><!--end form-group--> 
                     
                                                 <div class="form-group mb-0 row">
                                                     <div class="col-12">
                                                         {% comment %} <button class="btn btn-primary w-100 waves-effect waves-light" type="button">Log In <i class="fas fa-sign-in-alt ms-1"></i></button> {% endcomment %}
-                                                        <button  class="btn btn-primary w-100 waves-effect waves-light" type="submit" class="btn btn-primary">Login</button>
+                                                        <button  class="btn btn-primary w-100 waves-effect waves-light" type="submit" class="btn btn-primary">{% trans "Login" %}</button>
 
                                                     </div><!--end col--> 
                                                 </div> <!--end form-group-->                           
                                             </form><!--end form-->
                                             <div class="m-3 text-center text-muted">
-                                                <p class="mb-0">Don't have an account ?  <a href="../register" class="text-primary ms-2">Free Register</a></p>
+                                                <p class="mb-0">{% trans "Don't have an account ?" %}  <a href="../register" class="text-primary ms-2">{% trans "Free Register" %}</a></p>
                                             </div>
                                             
                                         </div>
