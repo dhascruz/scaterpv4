@@ -2,11 +2,35 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import *
 from .models import *
+from .utils import *
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 import logging
-from django.shortcuts import redirect
+
+from django.conf import settings
+from django.shortcuts import redirect, resolve_url
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
+
+#from django.views.generic import FormView, TemplateView
+
+
+#from django_otp.mixins import OTPRequiredMixin
+from .forms import TOTPVerifyForm
+
+
+import qrcode
+from django_otp.plugins.otp_totp.models import TOTPDevice
+from django.conf import settings
+from io import BytesIO
+from base64 import b64encode
+from .utils import generate_totp_qr_code
+from django.contrib import messages
+
+
+
+
 logger = logging.getLogger(__name__)
 
 def redirect_to_login(request):
@@ -152,12 +176,72 @@ def personal_information(request, user_id):
 
     return render(request, 'farmer/personal_information.html', { 'user_id': user_id, 'farmer': farmer})
 
-@login_required
+
 def farmer_success(request):
     
     #user_id = request.session.get('user_id')
     user_id = request.user.id
     return render(request, 'farmer/farmer_success.html',  {'user_id': user_id})
+
+
+##function start on otp
+
+@login_required
+def enable_two_factor(request):
+    curuser=request.user
+    qr_code_base64 = generate_totp_qr_code(request.user)
+    if request.method == "POST":
+        # Generate QR code for the user
+        qr_code_base64 = generate_totp_qr_code(request.user)
+        return render(request, 'farmer/enable_2fa.html', {
+            'qr_code': qr_code_base64
+        })
+    #return redirect('dashboard')
+    return render(request, 'farmer/enable_2fa.html', {
+            'qr_code': qr_code_base64,
+            'user': curuser
+        })
+
+
+@login_required
+def disable_two_factor(request):
+    # Disable two-factor authentication
+    TOTPDevice.objects.filter(user=request.user).delete()
+    request.user.two_factor_enabled = False
+    request.user.save()
+    return redirect('dashboard')
+
+
+def verify_totp(request):
+    if request.method == "POST":
+        form = TOTPVerifyForm(request.POST)
+        if form.is_valid():
+            device = TOTPDevice.objects.get(user=request.user, confirmed=False)
+            
+            # Verify the TOTP token entered by the user
+            if device.verify_token(form.cleaned_data['token']):
+                # If the token is valid, confirm the device and enable 2FA
+                device.confirmed = True
+                device.save()
+                
+                # Mark that the user has enabled 2FA
+                request.user.two_factor_enabled = True
+                request.user.save()
+                messages.success(request, "You are Succesfully verified.")
+                return redirect('farmer_dashboard')  # Redirect to the dashboard after successful validation
+            else:
+                form.add_error('token', 'Invalid TOTP token. Please try again.')
+    else:
+        form = TOTPVerifyForm()
+
+    return render(request, 'farmer/verify_totp.html', {'form': form})
+
+
+
+
+##function end on otp
+
+
 
 @login_required
 def products(request):
@@ -672,3 +756,14 @@ def farmer_delete_contact(request, pk):
         contact.delete()
         return redirect('contact_list')
     return render(request, 'farmer/contact_confirm_delete.html', {'contact': contact,'user_id': user_id})
+
+
+
+
+
+
+# @method_decorator(never_cache, name='dispatch')
+# class ExampleSecretView(OTPRequiredMixin, TemplateView):
+#     template_name = 'secret.html'
+
+

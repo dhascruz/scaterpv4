@@ -20,6 +20,8 @@ urlpatterns = [
     path('outlet-dashboard/', views.outlet_dashboard, name='outlet-dashboard'),
 
 
+     
+
     ###urls admin to add categories
    path('categories/', admin_views.category_list, name='category_list'),
     path('categories/new/', admin_views.category_create, name='category_create'),
@@ -84,6 +86,11 @@ urlpatterns = [
     # path('categories/edit/<int:id>/', views.category_edit, name='category_edit'),
     # path('categories/delete/<int:id>/', views.category_delete, name='category_delete'),
     # ###urls admin to add farmer profiles
+
+    path('farmer/enable-2fa/', views.enable_two_factor, name='enable_two_factor'),
+    path('farmer/disable-2fa/', views.disable_two_factor, name='disable_two_factor'),
+    path('farmer/verify-2fa/', views.verify_totp, name='verify_totp'),
+
 
 
 

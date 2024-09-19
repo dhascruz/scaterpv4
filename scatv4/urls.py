@@ -20,11 +20,24 @@ from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, include
 from django.utils.translation import gettext_lazy as _
 
+from django.conf import settings
+from django.contrib import admin
+from django.contrib.auth.views import LogoutView
+from django.urls import include, path
+
+from two_factor.gateways.twilio.urls import urlpatterns as tf_twilio_urls
+from two_factor.urls import urlpatterns as tf_urls
+
 
 urlpatterns = [
  #   path('admin/', admin.site.urls),
     path('', include('farmer.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
+
+    path('', include(tf_urls)),
+     path('', include(tf_twilio_urls)),
+     path('', include('user_sessions.urls', 'user_sessions')),
+     path('admin/', admin.site.urls),
 
 ]
 
@@ -32,3 +45,53 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('', include('farmer.urls')),
 )
+
+
+
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
+
+
+
+# urlpatterns = [
+#     # path(
+#     #     '',
+#     #     HomeView.as_view(),
+#     #     name='home',
+#     # ),
+#     # path(
+#     #     'account/logout/',
+#     #     LogoutView.as_view(),
+#     #     name='logout',
+#     # ),
+#     # # path(
+#     # #     'secret/',
+#     # #     ExampleSecretView.as_view(),
+#     # #     name='secret',
+#     # # ),
+#     # path(
+#     #     'account/register/',
+#     #     RegistrationView.as_view(),
+#     #     name='registration',
+#     # ),
+#     # path(
+#     #     'account/register/done/',
+#     #     RegistrationCompleteView.as_view(),
+#     #     name='registration_complete',
+#     # ),
+#     #path('', include(tf_urls)),
+#     path('', include(tf_twilio_urls)),
+#     path('', include('user_sessions.urls', 'user_sessions')),
+#     path('admin/', admin.site.urls),
+# ]
+
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns += [
+#         path('__debug__/', include(debug_toolbar.urls)),
+#     ]

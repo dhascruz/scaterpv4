@@ -37,56 +37,6 @@ class CustomLoginForm(UserCreationForm):
     )
 
 
-# class AppointmentForm(forms.ModelForm):
-
-
-#     # doctor = forms.ChoiceField(
-        
-#     #     widget=forms.Select(attrs={'class': 'form-control'})
-#     # )
-#     name = forms.CharField(
-#         max_length=100,
-#         widget=forms.TextInput(attrs={'class': 'form-control'})
-#     )
-#     mobile_number = forms.CharField(
-#         max_length=15,
-#         widget=forms.TextInput(attrs={'class': 'form-control'})
-#     )
-#     patient_id = forms.CharField(
-#         max_length=60,
-#         widget=forms.TextInput(attrs={'class': 'form-control'})
-#     )
-   
-#     appointment_date = forms.DateField(
-#         widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'})
-#     )
-
-#     email = forms.CharField(
-#         max_length=50,
-#         widget=forms.TextInput(attrs={'class': 'form-control'})
-#     )
-        
-#     appointment_fees = forms.DecimalField(
-#         initial=150.00,
-#         widget=forms.NumberInput(attrs={'readonly': 'readonly'})
-#     )        
-
-#     # patient_address = forms.CharField(
-#     #     max_length=200,
-#     #     widget=forms.TextInput(attrs={'class': 'form-control'})
-#     # )
-#     # patient_fees = forms.CharField(
-#     #     max_length=10,
-#     #     widget=forms.TextInput(attrs={'class': 'form-control'})
-#     # )
-#     class Meta:
-#         model = Appointment
-        
-#         fields = ['name', 'mobile_number', 'patient_id', 'appointment_date', 'slot', 'email', 'address',  'appointment_fees']
-#     widgets = {
-#             'appointment_date': forms.DateInput(attrs={'type': 'date'}),
-#        }
-
 
         
 
@@ -196,6 +146,10 @@ class AgriAssetForm(forms.ModelForm):
     class Meta:
         model = AgriAsset
         fields = ['land_owner', 'land_location', 'google_map_location', 'width', 'length', 'size', 'cultivation_method','owner_type']
+
+
+class TOTPVerifyForm(forms.Form):
+    token = forms.CharField(label="Enter TOTP", max_length=6)
 
 
 class ContactForm(forms.ModelForm):

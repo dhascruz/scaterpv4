@@ -42,7 +42,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'farmer',
+
+    'user_sessions',
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_email',
+    'two_factor',
+    'two_factor.plugins.phonenumber',
+    'two_factor.plugins.email',
+
+    'debug_toolbar',
+    'bootstrapform'
+
+    
+
 ]
+
 
 
 
@@ -51,6 +67,7 @@ AUTH_USER_MODEL = 'farmer.CustomUser'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = '/login/'
+#LOGIN_URL = 'two_factor:login'
 
 
 MIDDLEWARE = [
@@ -62,7 +79,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware', # Middleware for language choice
-    'whitenoise.middleware.WhiteNoiseMiddleware'  # Middleware for the static files in production
+#    'whitenoise.middleware.WhiteNoiseMiddleware'  # Middleware for the static files in production
+
+    'django_otp.middleware.OTPMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'two_factor.middleware.threadlocals.ThreadLocals',
 
 ]
 

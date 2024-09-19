@@ -4,5 +4,22 @@ pymysql
 tailwind
 openpyxl
 python-dateutil
-mysqlclient==2.0.3
-Pillow-10.4.0
+mysqlclient
+
+
+
+# Example app
+
+django-debug-toolbar
+django-bootstrap-form
+django-user-sessions
+
+# Documentation
+
+Sphinx
+sphinx_rtd_theme
+
+# Build
+
+wheel
+twine

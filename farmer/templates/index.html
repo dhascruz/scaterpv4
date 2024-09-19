@@ -16,7 +16,7 @@
 
             <!-- Page Content-->
           
-
+            
 
             <div class="page-content">
                 <div class="container-fluid">
@@ -75,6 +75,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Role</th>
+                                            <th>Verification Status</th>
                                             <th>Last Login</th>
                                             <th>Action</th>
                                             
@@ -88,6 +89,11 @@
                                             <td>{{customuser.username}}</td>    
                                             <td>{{customuser.email}}</td>  
                                             <td>{{customuser.role}}</td>  
+                                            <td> {% if customuser.two_factor_enabled == 1  %}
+                                                <span class="tick">✔</span>
+                                            {% else %}
+                                                <span>Fail</span>
+                                            {% endif %}</td>  
                                             <td>{{customuser.last_login}}</td> 
                                             <td> 
                                                 <a class="btn btn-sm btn-warning" href="{% url 'user_edit' customuser.pk %}"><span class="fa fa-edit"></span>Edit</a> - 

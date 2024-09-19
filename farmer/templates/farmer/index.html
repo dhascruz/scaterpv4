@@ -16,6 +16,18 @@
 
             <!-- Page Content-->
           
+            <style>
+                .success {
+                    color: green;
+                    font-weight: bold;
+                }
+                .message {
+                    padding: 10px;
+                    margin: 10px 0;
+                    border-radius: 5px;
+                    background-color: #e6ffe6;
+                }
+            </style>
 
 
             <div class="page-content">
@@ -47,7 +59,18 @@
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div><!--end row-->
-                  
+    
+                    
+            <div>
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                          <li class="message success">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
     
                     {% block content %}
                     <h1>{% trans "Product List" %}</h1>

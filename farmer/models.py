@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import F
+from django_otp.plugins.otp_totp.models import TOTPDevice
+
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = (
@@ -8,7 +10,12 @@ class CustomUser(AbstractUser):
         ('farmer', 'Farmer'),
         ('outlet', 'outlet'),
     )
+
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
+    two_factor_enabled = models.BooleanField(default=False)
+
+# class UserTOTPDevice(TOTPDevice):
+#     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)    
 
 class FarmerDetail(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
