@@ -1,6 +1,6 @@
 # eschoolerp
 
-
+Developed by Dhas
 
 ## Getting started
 
