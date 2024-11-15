@@ -71,9 +71,38 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 # Home view (restricted to logged-in users)
+
 @login_required
-def home_view(request):
-    return render(request, 'home.html', {'user': request.user})
+def home(request):
+    accounting_links = AccountingLinks.objects.all()
+    accounting_links_cnt = AccountingLinks.objects.all().count()
+
+    context = {
+        'accounting_links': accounting_links,
+        'accounting_links_cnt': accounting_links_cnt,
+        'user': request.user,
+        # other context variables can be added here if needed
+    }
+
+    return render(request, 'home.html', context)
+
+@login_required
+def quick_links(request):
+    accounting_links = AccountingLinks.objects.all()
+    accounting_links_cnt = AccountingLinks.objects.all().count()
+    
+    context = {
+        'accounting_links': accounting_links,
+        'accounting_links_cnt': accounting_links_cnt,
+        
+        # other context variables can be added here if needed
+    }
+    
+
+    return render(request, 'quick_links.html', context)
+
+
+
 
 # Logout view
 def logout_view(request):

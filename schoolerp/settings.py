@@ -114,7 +114,7 @@ WSGI_APPLICATION = 'schoolerp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'eschool3',
+        'NAME': 'eschool',
         'USER': 'myadmin',
         'PASSWORD': '453cur135',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
